@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FADAA Santé">
+  <defs>
+    <linearGradient id="brand" x1="8" y1="8" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D4B5A"/>
+      <stop offset="1" stop-color="#0F8A7A"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="#F4FAF9"/>
+  <path d="M15 14 43 7c5-1 9 2 9 7 0 4-3 7-7 8l-30 8c-3 1-6-1-6-5v-5c0-3 2-5 6-6Z" fill="url(#brand)"/>
+  <path d="m16 34 20-5c5-1 9 2 9 7 0 4-3 7-7 8l-22 6c-4 1-7-2-7-6v-3c0-3 3-6 7-7Z" fill="#0D4B5A"/>
+  <path d="M48 19c9 5 11 14 6 22-5 9-17 15-31 16" fill="none" stroke="#22C7AD" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="23" cy="56" r="5" fill="#0D4B5A"/>
+</svg>

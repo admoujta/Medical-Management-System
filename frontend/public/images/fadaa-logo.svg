@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 104" role="img" aria-labelledby="title desc">
+  <title id="title">FADAA Santé</title>
+  <desc id="desc">Logo FADAA Santé bleu pétrole et vert médical</desc>
+  <defs>
+    <linearGradient id="brand" x1="10" y1="12" x2="95" y2="92" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D4B5A"/>
+      <stop offset="1" stop-color="#0F8A7A"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(5 4)">
+    <path d="M26 17 78 4c8-2 15 3 15 10 0 6-4 11-10 13L26 42c-5 1-9-2-9-7V27c0-5 4-9 9-10Z" fill="url(#brand)"/>
+    <path d="m28 49 37-10c7-2 14 3 14 10 0 6-4 11-10 13L28 73c-6 2-11-3-11-9v-4c0-5 4-9 11-11Z" fill="#0D4B5A"/>
+    <path d="M86 20c16 7 21 23 13 38C90 75 65 87 39 88" fill="none" stroke="#22C7AD" stroke-width="5" stroke-linecap="round"/>
+    <path d="M20 40C8 49 3 62 8 72c4 8 13 12 25 13" fill="none" stroke="#0F8A7A" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="38" cy="86" r="10" fill="#0D4B5A"/>
+  </g>
+  <g transform="translate(124 22)">
+    <text x="0" y="43" fill="#102F38" font-family="Sora, Inter, Arial, sans-serif" font-size="47" font-weight="700" letter-spacing="1">FADAA</text>
+    <rect x="2" y="54" width="42" height="4" rx="2" fill="#22C7AD"/>
+    <text x="52" y="59" fill="#0F8A7A" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="4">SANTÉ</text>
+  </g>
+</svg>

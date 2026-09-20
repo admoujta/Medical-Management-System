@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --atlas-ink: 16 47 56;
+  --atlas-petrol: 13 75 90;
+  --atlas-teal: 15 138 122;
+  --atlas-aqua: 34 199 173;
+  --atlas-sage: 155 191 171;
+  --atlas-mist: 234 244 241;
+  --atlas-line: 219 231 227;
+  color: #12313a;
+  background: #fbfaf7;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html[dir="rtl"] {
+  font-family: Inter, "Noto Sans Arabic", Tahoma, Arial, sans-serif;
+}
+
+html[dir="rtl"] input[type="email"],
+html[dir="rtl"] input[type="tel"],
+html[dir="rtl"] input[type="number"],
+html[dir="rtl"] input[type="date"],
+html[dir="rtl"] input[type="time"],
+html[dir="rtl"] input[type="datetime-local"],
+html[dir="rtl"] [data-ltr] {
+  direction: ltr;
+  text-align: start;
+}
+
+html[dir="rtl"] .calendar-shell .fc {
+  direction: rtl;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a,
+[role="button"],
+input,
+textarea,
+select {
+  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(.2,.8,.2,1);
+}
+
+button:not(:disabled):active,
+[role="button"]:not([aria-disabled="true"]):active {
+  transform: translateY(1px) scale(.99);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgb(var(--atlas-teal) / .2);
+  outline-offset: 2px;
+}
+
+tbody tr {
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+tbody tr:hover {
+  background-color: rgb(var(--atlas-mist) / .34);
+}
+
+.crud-modal-backdrop { animation: crud-fade-in 160ms ease-out both; }
+.crud-modal-panel { animation: crud-panel-in 220ms cubic-bezier(.2,.8,.2,1) both; }
+
+@keyframes crud-fade-in { from { opacity: 0; } }
+@keyframes crud-panel-in { from { opacity: 0; transform: translateY(12px) scale(.985); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+[id] {
+  scroll-margin-top: 88px;
+}
+
+::selection {
+  color: #ffffff;
+  background: #0f766e;
+}
+
+.record-section-action > button {
+  min-height: 42px;
+  padding: 0.65rem 1.15rem;
+  border: 1px solid #9fd8cf;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #087f70;
+  box-shadow: 0 2px 5px rgb(16 47 56 / 0.06);
+  font-size: 0.875rem;
+}
+
+.record-section-action > button:hover {
+  border-color: #0f8a7a;
+  background: #f2faf8;
+}
+
+.landing-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+.calendar-shell .fc {
+  --fc-border-color: #e2e8f0;
+  --fc-today-bg-color: rgb(var(--atlas-mist) / 0.45);
+  --fc-now-indicator-color: #ef4444;
+  --fc-event-bg-color: rgb(var(--atlas-mist));
+  --fc-event-border-color: rgb(var(--atlas-teal));
+  --fc-event-text-color: rgb(var(--atlas-petrol));
+  --fc-highlight-color: rgb(var(--atlas-teal) / 0.18);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.fadaa-map-tooltip {
+  border: 1px solid rgb(var(--atlas-line)) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 30px rgb(15 82 95 / 0.18) !important;
+  padding: 0.55rem 0.7rem !important;
+}
+
+.leaflet-tooltip-top.fadaa-map-tooltip::before {
+  border-top-color: #fff !important;
+}
+
+.calendar-shell .fc-col-header-cell-cushion,
+.calendar-shell .fc-daygrid-day-number {
+  color: #475569;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* En-têtes de la vue semaine : utiliser la couleur de l'espace médical. */
+.calendar-shell .fc-timeGridWeek-view .fc-col-header-cell-cushion {
+  color: rgb(var(--atlas-petrol));
+}
+
+.calendar-shell .fc-timeGridWeek-view .fc-day-today .fc-col-header-cell-cushion {
+  color: rgb(var(--atlas-teal));
+}
+
+.calendar-shell .fc-timegrid-slot-label-cushion {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.calendar-shell .fc-timegrid-slot {
+  height: 2.25rem;
+}
+
+.calendar-shell .fc-timegrid-event {
+  min-height: 2.1rem;
+}
+
+.calendar-shell .fc-event {
+  cursor: pointer;
+  border-width: 0 0 0 4px;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.08);
+}
+
+.calendar-shell .fc-event .fc-event-main {
+  color: #0f172a;
+}
+
+.calendar-shell .fc-timegrid-event .fc-event-main > div {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0.3rem 0.45rem;
+}
+
+.calendar-shell .fc-timegrid-event .fc-event-main b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-shell .fc-timegrid-event .fc-event-main span {
+  display: none;
+}
+
+.calendar-shell .fc-highlight {
+  border-radius: 6px;
+  background: rgb(var(--atlas-teal) / 0.2);
+  box-shadow: inset 0 0 0 2px rgb(var(--atlas-teal) / 0.55);
+}
+
+.calendar-shell .fc-event-mirror {
+  border-color: rgb(var(--atlas-teal));
+  background: rgb(var(--atlas-teal) / 0.2);
+  opacity: 1;
+}
+
+.calendar-shell .fc-bg-event.cabinet-break {
+  background: repeating-linear-gradient(135deg, #f1f5f9, #f1f5f9 7px, #cbd5e1 7px, #cbd5e1 9px);
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.calendar-shell .fc-bg-event.cabinet-break::after {
+  content: "Pause du cabinet";
+  display: block;
+  padding: 0.35rem 0.5rem;
+  color: #475569;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.calendar-shell .appointment-requested { border-color: #8b5cf6; background: #ede9fe; color: #4c1d95; }
+.calendar-shell .appointment-planned { border-color: rgb(var(--atlas-teal)); background: rgb(var(--atlas-mist)); color: rgb(var(--atlas-petrol)); }
+.calendar-shell .appointment-confirmed { border-color: #10b981; background: #d1fae5; color: #064e3b; }
+.calendar-shell .appointment-present { border-color: #f59e0b; background: #fef3c7; color: #78350f; }
+.calendar-shell .appointment-absent { border-color: #f97316; background: #ffedd5; color: #7c2d12; }
+.calendar-shell .appointment-completed { border-color: #64748b; background: #e2e8f0; color: #334155; }
+.calendar-shell .appointment-cancelled { border-color: #ef4444; background: #fee2e2; color: #7f1d1d; }
+.calendar-shell .appointment-rejected { border-color: #ef4444; background: #fff1f2; color: #9f1239; }
+.calendar-shell .appointment-in_progress,
+.calendar-shell .appointment-arrived,
+.calendar-shell .appointment-waiting { border-color: #06b6d4; background: #cffafe; color: #155e75; }
+
+.patient-calendar .fc-toolbar-title {
+  color: rgb(var(--atlas-petrol));
+  font-family: Sora, Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.05rem;
+}
+
+.patient-calendar .fc-button-primary {
+  border-color: rgb(var(--atlas-line)) !important;
+  background: #fff !important;
+  color: #475569 !important;
+  box-shadow: none !important;
+  font-size: .75rem !important;
+  font-weight: 700 !important;
+}
+
+.patient-calendar .fc-button-primary:hover,
+.patient-calendar .fc-button-primary.fc-button-active {
+  border-color: rgb(var(--atlas-teal)) !important;
+  background: rgb(var(--atlas-teal)) !important;
+  color: #fff !important;
+}
+
+@media (max-width: 639px) {
+  .patient-calendar .fc-header-toolbar {
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: .65rem;
+  }
+
+  .patient-calendar .fc-toolbar-chunk:nth-child(2) {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .patient-calendar .fc-daygrid-event .fc-event-main span {
+    display: none;
+  }
+}
+
+/* Agenda : réserve toujours une vraie colonne à l'historique. */
+.appointments-layout { grid-template-columns: minmax(0, 1fr); }
+.appointment-history-panel { min-width: 0; }
+
+@media (min-width: 1024px) {
+  .appointments-layout { grid-template-columns: minmax(0, 1fr) 280px; }
+}
+
+@media (min-width: 1280px) {
+  .appointments-layout { grid-template-columns: 210px minmax(0, 1fr) 300px; }
+}
+/* Appointment view switch: keep the calendar and list mounted so filters and
+   scroll state remain stable while switching views. */
+.appointment-list-panel {
+  display: none;
+}
+
+html[data-appointment-view='list'] .appointment-list-panel {
+  display: block;
+}
+
+html[data-appointment-view='list'] .appointments-layout {
+  display: none;
+}
+
+.appointment-history-panel {
+  display: block;
+}
+
+[aria-label='Détails du rendez-vous'] > div:first-child > div:last-child > button:first-child {
+  display: none;
+}
+
+[aria-label='Détails du rendez-vous'] > div:last-child > .grid {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+[aria-label='Détails du rendez-vous'] > div:last-child > .grid > aside {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .appointments-layout {
+    grid-template-columns: minmax(0, 1fr) 280px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .appointments-layout {
+    grid-template-columns: 210px minmax(0, 1fr) 300px !important;
+  }
+
+  [aria-label='Détails du rendez-vous'] > div:last-child > div.sticky {
+    margin-right: 0;
+  }
+}

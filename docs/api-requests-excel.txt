@@ -1,0 +1,361 @@
+﻿FADAA SANTE - INVENTAIRE COMPLET DES API
+Format : TSV (colonnes separees par tabulations), compatible Excel.
+Import Excel : Donnees > A partir d'un fichier texte/CSV > Delimiteur Tabulation > Encodage UTF-8.
+Base locale : http://127.0.0.1:8001
+Swagger : http://127.0.0.1:8001/docs
+OpenAPI : http://127.0.0.1:8001/openapi.json
+Les parametres marques * sont obligatoires.
+Nombre total d'operations : 351
+
+Methode	Endpoint	Authentification	Categorie	Resume	Description	Parametres_Path	Parametres_Query	Corps_Requis	Type_Contenu	Schema_Corps	Succes_HTTP	Erreurs_HTTP	Operation_ID
+GET	/api/health	Public	health	Health Check				Non			200		health_check_api_health_get
+GET	/api/db-check	Public	db-check	Database Check				Non			200		database_check_api_db_check_get
+GET	/api/public/cabinets/{cabinet_slug}/seo	Public	public	Public Cabinet Seo		cabinet_slug*:string		Non			200	422	public_cabinet_seo_api_public_cabinets__cabinet_slug__seo_get
+GET	/api/public/doctors	Public	public	Public Doctors			cabinet_slug:string | null	Non			200	422	public_doctors_api_public_doctors_get
+GET	/api/public/doctors/{doctor_id}/logo	Public	public	Public Doctor Logo		doctor_id*:string		Non			200	422	public_doctor_logo_api_public_doctors__doctor_id__logo_get
+GET	/api/public/doctors/{doctor_id}/availability	Public	public	Public Doctor Availability		doctor_id*:string		Non			200	422	public_doctor_availability_api_public_doctors__doctor_id__availability_get
+POST	/api/public/appointments	Public	public	Public Appointment				Oui	application/json	PublicAppointmentCreate	201	422	public_appointment_api_public_appointments_post
+GET	/api/patient/doctors/{doctor_id}/reviews	Bearer	patient	Patient Doctor Reviews		doctor_id*:string		Non			200	422	patient_doctor_reviews_api_patient_doctors__doctor_id__reviews_get
+POST	/api/patient/doctors/{doctor_id}/reviews	Bearer	patient	Create Doctor Review		doctor_id*:string		Oui	application/json	DoctorReviewCreate	201	422	create_doctor_review_api_patient_doctors__doctor_id__reviews_post
+GET	/api/patient/reviews	Bearer	patient	Patient Reviews				Non			200		patient_reviews_api_patient_reviews_get
+PUT	/api/patient/reviews/{review_id}	Bearer	patient	Patient Review Update		review_id*:string		Oui	application/json	DoctorReviewCreate	200	422	patient_review_update_api_patient_reviews__review_id__put
+GET	/api/doctor/reviews	Bearer	doctor	Doctor Reviews				Non			200		doctor_reviews_api_doctor_reviews_get
+POST	/api/auth/register-doctor	Public	auth	Register Doctor				Oui	application/json	SignupRequest	201	422	register_doctor_api_auth_register_doctor_post
+POST	/api/auth/register-patient	Public	auth	Patient Signup				Oui	application/json	PatientRegisterRequest	201	422	patient_signup_api_auth_register_patient_post
+GET	/api/auth/staff-activation	Public	auth	Auth Staff Activation Info			token*:string	Non			200	422	auth_staff_activation_info_api_auth_staff_activation_get
+POST	/api/auth/staff-activation	Public	auth	Auth Staff Activate				Oui	application/json	StaffActivationRequest	200	422	auth_staff_activate_api_auth_staff_activation_post
+GET	/api/auth/patient-activation	Public	auth	Auth Patient Activation Info			token*:string	Non			200	422	auth_patient_activation_info_api_auth_patient_activation_get
+POST	/api/auth/patient-activation	Public	auth	Auth Patient Activate				Oui	application/json	PatientActivationRequest	200	422	auth_patient_activate_api_auth_patient_activation_post
+POST	/api/auth/login	Public	auth	Login				Oui	application/json	LoginRequest	200	422	login_api_auth_login_post
+POST	/api/auth/refresh	Public	auth	Refresh				Oui	application/json	RefreshRequest	200	422	refresh_api_auth_refresh_post
+POST	/api/auth/logout	Bearer	auth	Logout				Non			200		logout_api_auth_logout_post
+GET	/api/auth/me	Bearer	auth	Auth Me				Non			200		auth_me_api_auth_me_get
+GET	/api/doctor/dashboard	Bearer	doctor	Doctor Dashboard				Non			200		doctor_dashboard_api_doctor_dashboard_get
+GET	/api/doctor/cabinet	Bearer	doctor	Doctor Cabinet				Non			200		doctor_cabinet_api_doctor_cabinet_get
+PUT	/api/doctor/cabinet	Bearer	doctor	Doctor Cabinet Update				Oui	application/json	TenantUpdate	200	422	doctor_cabinet_update_api_doctor_cabinet_put
+GET	/api/doctor/cabinet/logo	Bearer	doctor	Doctor Cabinet Logo Get				Non			200		doctor_cabinet_logo_get_api_doctor_cabinet_logo_get
+POST	/api/doctor/cabinet/logo	Bearer	doctor	Doctor Cabinet Logo				Oui	multipart/form-data	Body_doctor_cabinet_logo_api_doctor_cabinet_logo_post	200	422	doctor_cabinet_logo_api_doctor_cabinet_logo_post
+GET	/api/medecin/statistics	Bearer	medecin	Medecin Statistics				Non			200		medecin_statistics_api_medecin_statistics_get
+GET	/api/staff/dashboard	Bearer	staff	Staff Dashboard				Non			200		staff_dashboard_api_staff_dashboard_get
+GET	/api/doctor/patient-settings	Bearer	doctor	Doctor Patient Settings				Non			200		doctor_patient_settings_api_doctor_patient_settings_get
+PUT	/api/doctor/patient-settings	Bearer	doctor	Doctor Patient Settings Update				Oui	application/json	PatientPortalSettings	200	422	doctor_patient_settings_update_api_doctor_patient_settings_put
+GET	/api/doctor/reminder-settings	Bearer	doctor	Reminder Settings Get				Non			200		reminder_settings_get_api_doctor_reminder_settings_get
+PUT	/api/doctor/reminder-settings	Bearer	doctor	Reminder Settings Update				Oui	application/json	AutomaticReminderSettings	200	422	reminder_settings_update_api_doctor_reminder_settings_put
+GET	/api/doctor/subscription	Bearer	doctor	Doctor Subscription				Non			200		doctor_subscription_api_doctor_subscription_get
+GET	/api/cabinet/modules	Bearer	cabinet	Cabinet Modules				Non			200		cabinet_modules_api_cabinet_modules_get
+POST	/api/doctor/subscription/select-plan	Bearer	doctor	Doctor Subscription Select Plan				Oui	application/json	PlanSelection	200	422	doctor_subscription_select_plan_api_doctor_subscription_select_plan_post
+POST	/api/doctor/subscription/pay	Bearer	doctor	Doctor Subscription Pay				Oui	application/json	SubscriptionPaymentCreate	201	422	doctor_subscription_pay_api_doctor_subscription_pay_post
+GET	/api/doctor/subscription/payments	Bearer	doctor	Doctor Subscription Payments				Non			200		doctor_subscription_payments_api_doctor_subscription_payments_get
+POST	/api/doctor/subscription/cancel-renewal	Bearer	doctor	Doctor Subscription Cancel Renewal				Non			200		doctor_subscription_cancel_renewal_api_doctor_subscription_cancel_renewal_post
+GET	/api/patient/dashboard	Bearer	patient	Patient Dashboard				Non			200		patient_dashboard_api_patient_dashboard_get
+GET	/api/patient/profile	Bearer	patient	Patient Profile				Non			200		patient_profile_api_patient_profile_get
+PUT	/api/patient/profile	Bearer	patient	Patient Profile Update				Oui	application/json	PatientProfileUpdate	200	422	patient_profile_update_api_patient_profile_put
+PUT	/api/patient/change-password	Bearer	patient	Patient Password				Oui	application/json	PasswordChange	200	422	patient_password_api_patient_change_password_put
+GET	/api/patient/appointments	Bearer	patient	Patient Appointments			page:integer | null; page_size:integer; search:string | null	Non			200	422	patient_appointments_api_patient_appointments_get
+GET	/api/patient/appointments/{item_id}	Bearer	patient	Patient Appointment		item_id*:string		Non			200	422	patient_appointment_api_patient_appointments__item_id__get
+GET	/api/patient/appointments/{item_id}/qr	Bearer	patient	Patient Appointment Qr		item_id*:string		Non			200	422	patient_appointment_qr_api_patient_appointments__item_id__qr_get
+POST	/api/patient/appointments/request	Bearer	patient	Patient Appointment Request				Oui	application/json	AppointmentRequest	201	422	patient_appointment_request_api_patient_appointments_request_post
+PUT	/api/patient/appointments/{item_id}/confirm	Bearer	patient	Patient Appointment Confirm		item_id*:string		Non			200	422	patient_appointment_confirm_api_patient_appointments__item_id__confirm_put
+PUT	/api/patient/appointments/{item_id}/cancel	Bearer	patient	Patient Appointment Cancel		item_id*:string		Non			200	422	patient_appointment_cancel_api_patient_appointments__item_id__cancel_put
+GET	/api/patient/visits	Bearer	patient	Patient Visits			page:integer | null; page_size:integer; search:string | null	Non			200	422	patient_visits_api_patient_visits_get
+GET	/api/patient/visits/{item_id}	Bearer	patient	Patient Visit		item_id*:string		Non			200	422	patient_visit_api_patient_visits__item_id__get
+GET	/api/patient/documents	Bearer	patient	Patient Documents			page:integer | null; page_size:integer; search:string | null	Non			200	422	patient_documents_api_patient_documents_get
+GET	/api/patient/documents/{item_id}	Bearer	patient	Patient Document		item_id*:string		Non			200	422	patient_document_api_patient_documents__item_id__get
+GET	/api/patient/documents/{item_id}/download	Bearer	patient	Patient Document Download		item_id*:string		Non			200	422	patient_document_download_api_patient_documents__item_id__download_get
+GET	/api/patient/prescriptions	Bearer	patient	Patient Prescriptions			page:integer | null; page_size:integer; search:string | null	Non			200	422	patient_prescriptions_api_patient_prescriptions_get
+GET	/api/patient/prescriptions/{item_id}	Bearer	patient	Patient Prescription		item_id*:string		Non			200	422	patient_prescription_api_patient_prescriptions__item_id__get
+GET	/api/patient/prescriptions/{item_id}/pdf	Bearer	patient	Patient Prescription Pdf		item_id*:string		Non			200	422	patient_prescription_pdf_api_patient_prescriptions__item_id__pdf_get
+GET	/api/patient/cnss	Bearer	patient	Patient Cnss			page:integer | null; page_size:integer; search:string | null	Non			200	422	patient_cnss_api_patient_cnss_get
+POST	/api/patient/cnss	Bearer	patient	Patient Cnss Create				Oui	application/json	PatientCNSSCreate	201	422	patient_cnss_create_api_patient_cnss_post
+GET	/api/patient/cnss/{item_id}	Bearer	patient	Patient Cnss Item		item_id*:string		Non			200	422	patient_cnss_item_api_patient_cnss__item_id__get
+GET	/api/patient/cnss/{item_id}/detail	Bearer	patient	Patient Cnss Detail		item_id*:string		Non			200	422	patient_cnss_detail_api_patient_cnss__item_id__detail_get
+PATCH	/api/patient/cnss/{item_id}/action	Bearer	patient	Patient Cnss Action		item_id*:string		Oui	application/json	PatientCNSSAction	200	422	patient_cnss_action_api_patient_cnss__item_id__action_patch
+POST	/api/patient/cnss/{item_id}/documents	Bearer	patient	Patient Cnss Document Add		item_id*:string		Oui	multipart/form-data	Body_patient_cnss_document_add_api_patient_cnss__item_id__documents_post	201	422	patient_cnss_document_add_api_patient_cnss__item_id__documents_post
+GET	/api/patient/notifications	Bearer	patient	Patient Notifications				Non			200		patient_notifications_api_patient_notifications_get
+PATCH	/api/patient/notifications/read-all	Bearer	patient	Patient Notifications Read All				Non			200		patient_notifications_read_all_api_patient_notifications_read_all_patch
+PATCH	/api/patient/notifications/{item_id}/read	Bearer	patient	Patient Notification Read		item_id*:string		Non			200	422	patient_notification_read_api_patient_notifications__item_id__read_patch
+GET	/api/patient/payments	Bearer	patient	Patient Payments			page:integer | null; page_size:integer; search:string | null	Non			200	422	patient_payments_api_patient_payments_get
+GET	/api/patient/honoraires	Bearer	patient	Patient Honoraires			page:integer | null; page_size:integer; search:string | null	Non			200	422	patient_honoraires_api_patient_honoraires_get
+GET	/api/patient/receipts/{item_id}/download	Bearer	patient	Patient Receipt		item_id*:string		Non			200	422	patient_receipt_api_patient_receipts__item_id__download_get
+GET	/api/staff/me/permissions	Bearer	staff	Staff My Permissions				Non			200		staff_my_permissions_api_staff_me_permissions_get
+GET	/api/payment-reminders/summary	Bearer	payment-reminders	Payment Reminder Summary				Non			200		payment_reminder_summary_api_payment_reminders_summary_get
+GET	/api/payment-reminders/{patient_id}	Bearer	payment-reminders	Payment Reminder History		patient_id*:string		Non			200	422	payment_reminder_history_api_payment_reminders__patient_id__get
+POST	/api/payment-reminders	Bearer	payment-reminders	Payment Reminder Create				Oui	application/json	PaymentReminderCreate	201	422	payment_reminder_create_api_payment_reminders_post
+POST	/api/payment-reminders/bulk	Bearer	payment-reminders	Payment Reminder Bulk	Create one reminder per unpaid patient, scoped strictly to the current cabinet.			Oui	application/json	PaymentReminderBulkCreate	201	422	payment_reminder_bulk_api_payment_reminders_bulk_post
+GET	/api/doctor/support-tickets	Bearer	doctor	Doctor Support Tickets				Non			200		doctor_support_tickets_api_doctor_support_tickets_get
+POST	/api/doctor/support-tickets	Bearer	doctor	Doctor Support Create				Oui	application/json	DoctorSupportTicketCreate	201	422	doctor_support_create_api_doctor_support_tickets_post
+POST	/api/doctor/support-tickets/{item_id}/reply	Bearer	doctor	Doctor Support Reply		item_id*:string		Oui	application/json	SupportReplyCreate	200	422	doctor_support_reply_api_doctor_support_tickets__item_id__reply_post
+GET	/api/doctor/notifications	Bearer	doctor	Doctor Notifications				Non			200		doctor_notifications_api_doctor_notifications_get
+PATCH	/api/doctor/notifications/read-all	Bearer	doctor	Doctor Notifications Read All				Non			200		doctor_notifications_read_all_api_doctor_notifications_read_all_patch
+PATCH	/api/doctor/notifications/{item_id}/read	Bearer	doctor	Doctor Notification Read		item_id*:string		Non			200	422	doctor_notification_read_api_doctor_notifications__item_id__read_patch
+GET	/api/doctor/schedule	Bearer	doctor	Doctor Schedule				Non			200		doctor_schedule_api_doctor_schedule_get
+PUT	/api/doctor/schedule	Bearer	doctor	Doctor Schedule Update				Oui	application/json	ScheduleUpdate	200	422	doctor_schedule_update_api_doctor_schedule_put
+GET	/api/doctor/time-offs	Bearer	doctor	Doctor Time Offs				Non			200		doctor_time_offs_api_doctor_time_offs_get
+POST	/api/doctor/time-offs	Bearer	doctor	Doctor Time Off Create				Oui	application/json	TimeOffCreate	201	422	doctor_time_off_create_api_doctor_time_offs_post
+DELETE	/api/doctor/time-offs/{item_id}	Bearer	doctor	Doctor Time Off Delete		item_id*:string		Non			204	422	doctor_time_off_delete_api_doctor_time_offs__item_id__delete
+GET	/api/doctor/blocked-slots	Bearer	doctor	Doctor Blocked Slots				Non			200		doctor_blocked_slots_api_doctor_blocked_slots_get
+POST	/api/doctor/blocked-slots	Bearer	doctor	Doctor Blocked Slot Create				Oui	application/json	BlockedSlotCreate	201	422	doctor_blocked_slot_create_api_doctor_blocked_slots_post
+DELETE	/api/doctor/blocked-slots/{item_id}	Bearer	doctor	Doctor Blocked Slot Delete		item_id*:string		Non			204	422	doctor_blocked_slot_delete_api_doctor_blocked_slots__item_id__delete
+GET	/api/super-admin/dashboard	Bearer	super-admin	Admin Dashboard				Non			200		admin_dashboard_api_super_admin_dashboard_get
+GET	/api/super-admin/instances/expiring-soon	Bearer	super-admin	Admin Tenants Expiring				Non			200		admin_tenants_expiring_api_super_admin_instances_expiring_soon_get
+GET	/api/super-admin/instances/status-summary	Bearer	super-admin	Admin Tenants Summary				Non			200		admin_tenants_summary_api_super_admin_instances_status_summary_get
+POST	/api/super-admin/instances/check-expiration	Bearer	super-admin	Admin Check Expiration				Non			200		admin_check_expiration_api_super_admin_instances_check_expiration_post
+GET	/api/super-admin/instances	Bearer	super-admin	Admin Tenants			page:integer | null; page_size:integer; search:string | null	Non			200	422	admin_tenants_api_super_admin_instances_get
+GET	/api/super-admin/instances/{tenant_id}	Bearer	super-admin	Admin Tenant Detail		tenant_id*:string		Non			200	422	admin_tenant_detail_api_super_admin_instances__tenant_id__get
+PUT	/api/super-admin/instances/{tenant_id}	Bearer	super-admin	Admin Tenant Update		tenant_id*:string		Oui	application/json	AdminTenantUpdate	200	422	admin_tenant_update_api_super_admin_instances__tenant_id__put
+PUT	/api/super-admin/instances/{tenant_id}/status	Bearer	super-admin	Admin Tenant Status		tenant_id*:string		Oui	application/json	AdminStatusUpdate	200	422	admin_tenant_status_api_super_admin_instances__tenant_id__status_put
+PATCH	/api/super-admin/instances/{tenant_id}/activate	Bearer	super-admin	Super Admin Instance Activate		tenant_id*:string		Non			200	422	super_admin_instance_activate_api_super_admin_instances__tenant_id__activate_patch
+PATCH	/api/super-admin/instances/{tenant_id}/suspend	Bearer	super-admin	Super Admin Instance Suspend		tenant_id*:string		Non			200	422	super_admin_instance_suspend_api_super_admin_instances__tenant_id__suspend_patch
+PATCH	/api/super-admin/instances/{tenant_id}/extend-trial	Bearer	super-admin	Super Admin Instance Extend		tenant_id*:string	days:integer	Non			200	422	super_admin_instance_extend_api_super_admin_instances__tenant_id__extend_trial_patch
+GET	/api/super-admin/subscriptions	Bearer	super-admin	Admin Subscriptions			page:integer | null; page_size:integer; search:string | null	Non			200	422	admin_subscriptions_api_super_admin_subscriptions_get
+POST	/api/super-admin/subscriptions	Bearer	super-admin	Super Admin Subscription Create				Oui	application/json	AdminSubscriptionCreate	201	422	super_admin_subscription_create_api_super_admin_subscriptions_post
+GET	/api/super-admin/subscriptions/{item_id}	Bearer	super-admin	Admin Subscription		item_id*:string		Non			200	422	admin_subscription_api_super_admin_subscriptions__item_id__get
+PUT	/api/super-admin/subscriptions/{item_id}	Bearer	super-admin	Admin Subscription Update		item_id*:string		Oui	application/json	AdminSubscriptionUpdate	200	422	admin_subscription_update_api_super_admin_subscriptions__item_id__put
+POST	/api/super-admin/subscriptions/{item_id}/activate	Bearer	super-admin	Admin Subscription Activate		item_id*:string		Non			200	422	admin_subscription_activate_api_super_admin_subscriptions__item_id__activate_post
+POST	/api/super-admin/subscriptions/{item_id}/cancel	Bearer	super-admin	Admin Subscription Cancel		item_id*:string		Non			200	422	admin_subscription_cancel_api_super_admin_subscriptions__item_id__cancel_post
+PATCH	/api/super-admin/subscriptions/{item_id}/renew	Bearer	super-admin	Super Admin Subscription Renew		item_id*:string		Non			200	422	super_admin_subscription_renew_api_super_admin_subscriptions__item_id__renew_patch
+GET	/api/super-admin/support-tickets	Bearer	super-admin	Admin Support Tickets			page:integer | null; page_size:integer; search:string | null	Non			200	422	admin_support_tickets_api_super_admin_support_tickets_get
+GET	/api/super-admin/support-tickets/{item_id}	Bearer	super-admin	Admin Support Ticket		item_id*:string		Non			200	422	admin_support_ticket_api_super_admin_support_tickets__item_id__get
+PUT	/api/super-admin/support-tickets/{item_id}	Bearer	super-admin	Admin Support Update		item_id*:string		Oui	application/json	SupportTicketUpdate	200	422	admin_support_update_api_super_admin_support_tickets__item_id__put
+POST	/api/super-admin/support-tickets/{item_id}/reply	Bearer	super-admin	Admin Support Reply		item_id*:string		Oui	application/json	SupportReplyCreate	200	422	admin_support_reply_api_super_admin_support_tickets__item_id__reply_post
+POST	/api/super-admin/support-tickets/{item_id}/close	Bearer	super-admin	Admin Support Close		item_id*:string		Non			200	422	admin_support_close_api_super_admin_support_tickets__item_id__close_post
+GET	/api/super-admin/audit-logs	Bearer	super-admin	Admin System Logs			page:integer | null; page_size:integer; search:string | null	Non			200	422	admin_system_logs_api_super_admin_audit_logs_get
+GET	/api/super-admin/backups	Bearer	super-admin	Super Admin Backups			page:integer | null; page_size:integer; search:string | null	Non			200	422	super_admin_backups_api_super_admin_backups_get
+POST	/api/super-admin/backups	Bearer	super-admin	Super Admin Backup Create				Non			201		super_admin_backup_create_api_super_admin_backups_post
+GET	/api/super-admin/restores	Bearer	super-admin	Super Admin Restores			page:integer | null; page_size:integer; search:string | null	Non			200	422	super_admin_restores_api_super_admin_restores_get
+POST	/api/super-admin/backups/{backup_id}/test-restore	Bearer	super-admin	Super Admin Backup Test		backup_id*:string		Non			200	422	super_admin_backup_test_api_super_admin_backups__backup_id__test_restore_post
+GET	/api/super-admin/backups/{backup_id}/download	Bearer	super-admin	Super Admin Backup Download		backup_id*:string		Non			200	422	super_admin_backup_download_api_super_admin_backups__backup_id__download_get
+GET	/api/super-admin/analytics	Bearer	super-admin	Admin Analytics				Non			200		admin_analytics_api_super_admin_analytics_get
+GET	/api/public/subscription-plans	Public	public	Public Subscription Plans				Non			200		public_subscription_plans_api_public_subscription_plans_get
+GET	/api/public/subscription-plans/{slug}	Public	public	Public Subscription Plan		slug*:string		Non			200	422	public_subscription_plan_api_public_subscription_plans__slug__get
+GET	/api/super-admin/subscription-plans	Bearer	super-admin	Super Admin Subscription Plans				Non			200		super_admin_subscription_plans_api_super_admin_subscription_plans_get
+POST	/api/super-admin/subscription-plans	Bearer	super-admin	Super Admin Subscription Plan Create				Oui	application/json	SubscriptionPlanCreate	201	422	super_admin_subscription_plan_create_api_super_admin_subscription_plans_post
+PATCH	/api/super-admin/subscription-plans/{item_id}	Bearer	super-admin	Super Admin Subscription Plan Patch		item_id*:string		Oui	application/json	SubscriptionPlanUpdate	200	422	super_admin_subscription_plan_patch_api_super_admin_subscription_plans__item_id__patch
+DELETE	/api/super-admin/subscription-plans/{item_id}	Bearer	super-admin	Super Admin Subscription Plan Disable		item_id*:string		Non			200	422	super_admin_subscription_plan_disable_api_super_admin_subscription_plans__item_id__delete
+GET	/api/super-admin/subscription-payments	Bearer	super-admin	Super Admin Subscription Payments			page:integer | null; page_size:integer; search:string | null	Non			200	422	super_admin_subscription_payments_api_super_admin_subscription_payments_get
+PATCH	/api/super-admin/subscription-payments/{item_id}/validate	Bearer	super-admin	Super Admin Subscription Payment Validate		item_id*:string		Non			200	422	super_admin_subscription_payment_validate_api_super_admin_subscription_payments__item_id__validate_patch
+PATCH	/api/super-admin/subscription-payments/{item_id}/reject	Bearer	super-admin	Super Admin Subscription Payment Reject		item_id*:string		Oui	application/json	SubscriptionPaymentDecision	200	422	super_admin_subscription_payment_reject_api_super_admin_subscription_payments__item_id__reject_patch
+GET	/api/super-admin/users	Bearer	super-admin	Super Admin Users			page:integer | null; page_size:integer; search:string | null	Non			200	422	super_admin_users_api_super_admin_users_get
+PUT	/api/super-admin/users/{item_id}/activate	Bearer	super-admin	Super Admin User Activate		item_id*:string		Non			200	422	super_admin_user_activate_api_super_admin_users__item_id__activate_put
+PUT	/api/super-admin/users/{item_id}/disable	Bearer	super-admin	Super Admin User Disable		item_id*:string		Non			200	422	super_admin_user_disable_api_super_admin_users__item_id__disable_put
+GET	/api/super-admin/settings	Bearer	super-admin	Super Admin Settings				Non			200		super_admin_settings_api_super_admin_settings_get
+PUT	/api/super-admin/settings	Bearer	super-admin	Super Admin Settings Update				Oui	application/json	PlatformSettingsUpdate	200	422	super_admin_settings_update_api_super_admin_settings_put
+GET	/api/public/events	Public	public	Public Events			include_past:boolean	Non			200	422	public_events_api_public_events_get
+GET	/api/public/blog	Public	public	Public Blog				Non			200		public_blog_api_public_blog_get
+GET	/api/public/media/{asset_id}	Public	public	Public Media Image		asset_id*:string		Non			200	422	public_media_image_api_public_media__asset_id__get
+GET	/api/public/blog/gallery/{image_id}	Public	public	Public Blog Gallery Image		image_id*:string		Non			200	422	public_blog_gallery_image_api_public_blog_gallery__image_id__get
+GET	/api/public/blog/{slug}	Public	public	Public Blog Detail		slug*:string		Non			200	422	public_blog_detail_api_public_blog__slug__get
+GET	/api/public/events/gallery/{image_id}	Public	public	Public Event Gallery Image		image_id*:string		Non			200	422	public_event_gallery_image_api_public_events_gallery__image_id__get
+POST	/api/public/events/{event_id}/registrations	Public	public	Public Event Registration		event_id*:string		Oui	application/json	PublicEventRegistrationCreate	201	422	public_event_registration_api_public_events__event_id__registrations_post
+GET	/api/public/events/{slug_or_id}	Public	public	Public Event Detail		slug_or_id*:string		Non			200	422	public_event_detail_api_public_events__slug_or_id__get
+GET	/api/super-admin/events	Bearer	super-admin	Super Admin Events			page:integer | null; page_size:integer; search:string | null; status:string | null	Non			200	422	super_admin_events_api_super_admin_events_get
+POST	/api/super-admin/events	Bearer	super-admin	Super Admin Event Create				Oui	application/json	PlatformEventCreate	201	422	super_admin_event_create_api_super_admin_events_post
+GET	/api/super-admin/blog	Bearer	super-admin	Super Admin Blog			page:integer | null; page_size:integer; search:string | null; status:string | null	Non			200	422	super_admin_blog_api_super_admin_blog_get
+POST	/api/super-admin/blog	Bearer	super-admin	Super Admin Blog Create				Oui	application/json	BlogPostCreate	201	422	super_admin_blog_create_api_super_admin_blog_post
+PUT	/api/super-admin/blog/{item_id}	Bearer	super-admin	Super Admin Blog Update		item_id*:string		Oui	application/json	BlogPostUpdate	200	422	super_admin_blog_update_api_super_admin_blog__item_id__put
+DELETE	/api/super-admin/blog/{item_id}	Bearer	super-admin	Super Admin Blog Archive		item_id*:string		Non			200	422	super_admin_blog_archive_api_super_admin_blog__item_id__delete
+GET	/api/super-admin/media	Bearer	super-admin	Super Admin Media List			page:integer | null; page_size:integer; search:string | null	Non			200	422	super_admin_media_list_api_super_admin_media_get
+POST	/api/super-admin/media	Bearer	super-admin	Super Admin Media Upload				Oui	multipart/form-data	Body_super_admin_media_upload_api_super_admin_media_post	201	422	super_admin_media_upload_api_super_admin_media_post
+DELETE	/api/super-admin/media/{asset_id}	Bearer	super-admin	Super Admin Media Archive		asset_id*:string		Non			200	422	super_admin_media_archive_api_super_admin_media__asset_id__delete
+POST	/api/super-admin/blog/{post_id}/gallery/from-media	Bearer	super-admin	Super Admin Blog Gallery From Media		post_id*:string		Oui	application/json	BlogGalleryFromMediaCreate	201	422	super_admin_blog_gallery_from_media_api_super_admin_blog__post_id__gallery_from_media_post
+POST	/api/super-admin/blog/{post_id}/gallery	Bearer	super-admin	Super Admin Blog Gallery Add		post_id*:string		Oui	multipart/form-data	Body_super_admin_blog_gallery_add_api_super_admin_blog__post_id__gallery_post	201	422	super_admin_blog_gallery_add_api_super_admin_blog__post_id__gallery_post
+DELETE	/api/super-admin/blog/{post_id}/gallery/{image_id}	Bearer	super-admin	Super Admin Blog Gallery Delete		post_id*:string; image_id*:string		Non			200	422	super_admin_blog_gallery_delete_api_super_admin_blog__post_id__gallery__image_id__delete
+GET	/api/super-admin/events/{event_id}/registrations	Bearer	super-admin	Super Admin Event Registrations		event_id*:string	page:integer | null; page_size:integer; search:string | null	Non			200	422	super_admin_event_registrations_api_super_admin_events__event_id__registrations_get
+PUT	/api/super-admin/events/{item_id}	Bearer	super-admin	Super Admin Event Update		item_id*:string		Oui	application/json	PlatformEventUpdate	200	422	super_admin_event_update_api_super_admin_events__item_id__put
+DELETE	/api/super-admin/events/{item_id}	Bearer	super-admin	Super Admin Event Cancel		item_id*:string		Non			200	422	super_admin_event_cancel_api_super_admin_events__item_id__delete
+POST	/api/super-admin/events/{event_id}/gallery/from-media	Bearer	super-admin	Super Admin Event Gallery From Media		event_id*:string		Oui	application/json	BlogGalleryFromMediaCreate	201	422	super_admin_event_gallery_from_media_api_super_admin_events__event_id__gallery_from_media_post
+POST	/api/super-admin/events/{event_id}/gallery	Bearer	super-admin	Super Admin Event Gallery Add		event_id*:string		Oui	multipart/form-data	Body_super_admin_event_gallery_add_api_super_admin_events__event_id__gallery_post	201	422	super_admin_event_gallery_add_api_super_admin_events__event_id__gallery_post
+DELETE	/api/super-admin/events/{event_id}/gallery/{image_id}	Bearer	super-admin	Super Admin Event Gallery Delete		event_id*:string; image_id*:string		Non			200	422	super_admin_event_gallery_delete_api_super_admin_events__event_id__gallery__image_id__delete
+GET	/api/users	Bearer	users	Users List			page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string	Non			200	422	users_list_api_users_get
+POST	/api/users	Bearer	users	Users Create				Oui	application/json	UserCreate	201	422	users_create_api_users_post
+GET	/api/users/{user_id}	Bearer	users	Users Get		user_id*:string		Non			200	422	users_get_api_users__user_id__get
+PUT	/api/users/{user_id}	Bearer	users	Users Update		user_id*:string		Oui	application/json	UserUpdate	200	422	users_update_api_users__user_id__put
+DELETE	/api/users/{user_id}	Bearer	users	Users Delete		user_id*:string		Non			200	422	users_delete_api_users__user_id__delete
+POST	/api/users/{user_id}/resend-invitation	Bearer	users	Staff Invitation Resend		user_id*:string		Non			200	422	staff_invitation_resend_api_users__user_id__resend_invitation_post
+GET	/api/patients	Bearer	patients	Patients List			page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string; status:string | null	Non			200	422	patients_list_api_patients_get
+POST	/api/patients	Bearer	patients	Patients Create				Oui	application/json	PatientCreate	201	422	patients_create_api_patients_post
+GET	/api/patients/{patient_id}	Bearer	patients	Patients Get		patient_id*:string		Non			200	422	patients_get_api_patients__patient_id__get
+PUT	/api/patients/{patient_id}	Bearer	patients	Patients Update		patient_id*:string		Oui	application/json	PatientUpdate	200	422	patients_update_api_patients__patient_id__put
+DELETE	/api/patients/{patient_id}	Bearer	patients	Patients Delete		patient_id*:string		Non			200	422	patients_delete_api_patients__patient_id__delete
+GET	/api/patients/{patient_id}/overview	Bearer	patients	Patient Overview	Compact patient-centric dashboard payload for mobile clients.	patient_id*:string		Non			200	422	patient_overview_api_patients__patient_id__overview_get
+GET	/api/appointments	Bearer	appointments	Appointments List			patient_id:string | null; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string; status:string | null	Non			200	422	appointments_list_api_appointments_get
+POST	/api/appointments	Bearer	appointments	Appointments Create				Oui	application/json	AppointmentCreate	201	422	appointments_create_api_appointments_post
+POST	/api/appointments/qr/resolve	Bearer	appointments	Appointments Qr Resolve				Oui	application/json	AppointmentQrScanRequest	200	422	appointments_qr_resolve_api_appointments_qr_resolve_post
+POST	/api/appointments/qr/confirm	Bearer	appointments	Appointments Qr Confirm				Oui	application/json	AppointmentQrScanRequest	200	422	appointments_qr_confirm_api_appointments_qr_confirm_post
+GET	/api/appointments/{appointment_id}	Bearer	appointments	Appointments Get		appointment_id*:string		Non			200	422	appointments_get_api_appointments__appointment_id__get
+PUT	/api/appointments/{appointment_id}	Bearer	appointments	Appointments Update		appointment_id*:string		Oui	application/json	AppointmentUpdate	200	422	appointments_update_api_appointments__appointment_id__put
+DELETE	/api/appointments/{appointment_id}	Bearer	appointments	Appointments Delete		appointment_id*:string		Non			200	422	appointments_delete_api_appointments__appointment_id__delete
+GET	/api/appointments/{appointment_id}/details	Bearer	appointments	Contexte opÃ©rationnel complet dâun rendez-vous	Retourne le rendez-vous et ses ressources liÃ©es. LâaccÃ¨s est limitÃ© au cabinet actif et aux utilisateurs autorisÃ©s. Pour un patient, les notes internes sont masquÃ©es, les documents doivent Ãªtre partagÃ©s et les donnÃ©es financiÃ¨res respectent la configuration du cabinet. Les objets absents valent null et les collections absentes sont toujours des tableaux vides.	appointment_id*:string		Non			200	401; 403; 404; 422	appointments_details_api_appointments__appointment_id__details_get
+PATCH	/api/appointments/{appointment_id}/status	Bearer	appointments	Appointments Status		appointment_id*:string		Oui	application/json	AppointmentStatusUpdate	200	422	appointments_status_api_appointments__appointment_id__status_patch
+POST	/api/appointments/{appointment_id}/mark-arrived	Bearer	appointments	Appointments Mark Arrived		appointment_id*:string		Non			200	422	appointments_mark_arrived_api_appointments__appointment_id__mark_arrived_post
+POST	/api/appointments/{appointment_id}/start	Bearer	appointments	Appointments Start		appointment_id*:string		Non			200	422	appointments_start_api_appointments__appointment_id__start_post
+POST	/api/appointments/{appointment_id}/end	Bearer	appointments	Appointments End		appointment_id*:string		Non			200	422	appointments_end_api_appointments__appointment_id__end_post
+POST	/api/appointments/{appointment_id}/mark-absent	Bearer	appointments	Appointments Mark Absent		appointment_id*:string		Non			200	422	appointments_mark_absent_api_appointments__appointment_id__mark_absent_post
+POST	/api/appointments/{appointment_id}/cancel	Bearer	appointments	Appointments Cancel		appointment_id*:string		Non			200	422	appointments_cancel_api_appointments__appointment_id__cancel_post
+GET	/api/history	Bearer	history	History List			patient_id:string | null; appointment_id:string | null; visit_id:string | null; page:integer | null; page_size:integer; search:string | null	Non			200	422	history_list_api_history_get
+GET	/api/appointments/{appointment_id}/history	Bearer	appointments	Appointment History		appointment_id*:string		Non			200	422	appointment_history_api_appointments__appointment_id__history_get
+GET	/api/patients/{patient_id}/appointment-history	Bearer	patients	Patient Appointment History		patient_id*:string		Non			200	422	patient_appointment_history_api_patients__patient_id__appointment_history_get
+GET	/api/history/honoraire/{fee_id}	Bearer	history	Fee History		fee_id*:string		Non			200	422	fee_history_api_history_honoraire__fee_id__get
+GET	/api/security/audit-logs	Bearer	security	Medical Audit Logs				Non			200		medical_audit_logs_api_security_audit_logs_get
+GET	/api/patients/{patient_id}/access-logs	Bearer	patients	Patient Access Logs		patient_id*:string		Non			200	422	patient_access_logs_api_patients__patient_id__access_logs_get
+GET	/api/security/audit-logs/users/{user_id}	Bearer	security	Medical Audit User Logs		user_id*:string		Non			200	422	medical_audit_user_logs_api_security_audit_logs_users__user_id__get
+GET	/api/security/audit-logs/export	Bearer	security	Medical Audit Export				Non			200		medical_audit_export_api_security_audit_logs_export_get
+GET	/api/invoices	Bearer	invoices	Invoices List			patient_id:string | null; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string; status:string | null	Non			200	422	invoices_list_api_invoices_get
+POST	/api/invoices	Bearer	invoices	Invoices Create				Oui	application/json	InvoiceCreate	201	422	invoices_create_api_invoices_post
+POST	/api/invoices/from-honoraire/{fee_id}	Bearer	invoices	Invoices From Fee		fee_id*:string		Non			201	422	invoices_from_fee_api_invoices_from_honoraire__fee_id__post
+GET	/api/invoices/{invoice_id}	Bearer	invoices	Invoices Get		invoice_id*:string		Non			200	422	invoices_get_api_invoices__invoice_id__get
+GET	/api/invoices/{invoice_id}/pdf	Bearer	invoices	Afficher ou tÃ©lÃ©charger une facture PDF authentifiÃ©e		invoice_id*:string	action:string	Non			200	401; 403; 404; 422	invoice_pdf_api_invoices__invoice_id__pdf_get
+POST	/api/invoices/{invoice_id}/cancel	Bearer	invoices	Invoices Cancel		invoice_id*:string		Non			200	422	invoices_cancel_api_invoices__invoice_id__cancel_post
+GET	/api/invoices/{invoice_id}/echeances	Bearer	invoices	Invoice Due Dates		invoice_id*:string		Non			200	422	invoice_due_dates_api_invoices__invoice_id__echeances_get
+POST	/api/invoices/{invoice_id}/echeances	Bearer	invoices	CrÃ©er une Ã©chÃ©ance de paiement	CrÃ©e une Ã©chÃ©ance rattachÃ©e Ã une facture du cabinet actif. Le patient et lâhonoraire sont dÃ©duits de la facture. La somme des Ã©chÃ©ances non annulÃ©es ne peut pas dÃ©passer le montant total facturÃ©. LâopÃ©ration exige un accÃ¨s en Ã©criture au module Paiements et est inscrite dans lâhistorique.	invoice_id*:string		Oui	application/json	DueDateCreate	201	401; 403; 404; 422	invoice_due_date_create_api_invoices__invoice_id__echeances_post
+GET	/api/echeances	Bearer	echeances	Due Dates List			page:integer | null; page_size:integer; search:string | null; sort_order:string; status:string | null	Non			200	422	due_dates_list_api_echeances_get
+GET	/api/echeances/{item_id}	Bearer	echeances	Due Date Get		item_id*:string		Non			200	422	due_date_get_api_echeances__item_id__get
+PUT	/api/echeances/{item_id}	Bearer	echeances	Invoice Due Date Update		item_id*:string		Oui	application/json	DueDateUpdate	200	422	invoice_due_date_update_api_echeances__item_id__put
+POST	/api/echeances/{item_id}/cancel	Bearer	echeances	Invoice Due Date Cancel		item_id*:string		Non			200	422	invoice_due_date_cancel_api_echeances__item_id__cancel_post
+GET	/api/echeances/{item_id}/documents	Bearer	echeances	Due Date Documents List		item_id*:string		Non			200	422	due_date_documents_list_api_echeances__item_id__documents_get
+POST	/api/echeances/{item_id}/documents	Bearer	echeances	Due Date Document Create		item_id*:string		Oui	multipart/form-data	Body_due_date_document_create_api_echeances__item_id__documents_post	201	422	due_date_document_create_api_echeances__item_id__documents_post
+GET	/api/documents-echeance/{document_id}/download	Bearer	documents-echeance	Due Date Document Download		document_id*:string		Non			200	422	due_date_document_download_api_documents_echeance__document_id__download_get
+GET	/api/documents-echeance/{document_id}/preview	Bearer	documents-echeance	Due Date Document Preview		document_id*:string		Non			200	422	due_date_document_preview_api_documents_echeance__document_id__preview_get
+DELETE	/api/documents-echeance/{document_id}	Bearer	documents-echeance	Due Date Document Delete		document_id*:string		Non			204	422	due_date_document_delete_api_documents_echeance__document_id__delete
+GET	/api/payment-methods	Bearer	payment-methods	Payment Methods List			main_type:string | null; active:boolean | null	Non			200	422	payment_methods_list_api_payment_methods_get
+POST	/api/payment-methods	Bearer	payment-methods	Payment Methods Create				Oui	application/json	PaymentMethodCreate	201	422	payment_methods_create_api_payment_methods_post
+PUT	/api/payment-methods/{item_id}	Bearer	payment-methods	Payment Methods Update		item_id*:string		Oui	application/json	PaymentMethodUpdate	200	422	payment_methods_update_api_payment_methods__item_id__put
+GET	/api/bank-accounts	Bearer	bank-accounts	Bank Accounts List			active:boolean | null	Non			200	422	bank_accounts_list_api_bank_accounts_get
+POST	/api/bank-accounts	Bearer	bank-accounts	Bank Accounts Create				Oui	application/json	BankAccountCreate	201	422	bank_accounts_create_api_bank_accounts_post
+PUT	/api/bank-accounts/{item_id}	Bearer	bank-accounts	Bank Accounts Update		item_id*:string		Oui	application/json	BankAccountUpdate	200	422	bank_accounts_update_api_bank_accounts__item_id__put
+GET	/api/visits	Bearer	visits	Visits List			patient_id:string | null; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string; status:string | null	Non			200	422	visits_list_api_visits_get
+POST	/api/visits	Bearer	visits	Visits Create				Oui	application/json	VisitCreate	201	422	visits_create_api_visits_post
+POST	/api/visits/from-appointment/{appointment_id}	Bearer	visits	Visits From Appointment		appointment_id*:string		Non			201	422	visits_from_appointment_api_visits_from_appointment__appointment_id__post
+GET	/api/visits/{visit_id}	Bearer	visits	Visits Get		visit_id*:string		Non			200	422	visits_get_api_visits__visit_id__get
+PUT	/api/visits/{visit_id}	Bearer	visits	Visits Update		visit_id*:string		Oui	application/json	VisitUpdate	200	422	visits_update_api_visits__visit_id__put
+DELETE	/api/visits/{visit_id}	Bearer	visits	Visits Delete		visit_id*:string		Non			200	422	visits_delete_api_visits__visit_id__delete
+GET	/api/honoraires	Bearer	honoraires	Honoraires List			patient_id:string | null; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string; status:string | null	Non			200	422	honoraires_list_api_honoraires_get
+POST	/api/honoraires	Bearer	honoraires	Honoraires Create				Oui	application/json	FeeCreate	201	422	honoraires_create_api_honoraires_post
+GET	/api/honoraires/{fee_id}	Bearer	honoraires	Honoraires Get		fee_id*:string		Non			200	422	honoraires_get_api_honoraires__fee_id__get
+PUT	/api/honoraires/{fee_id}	Bearer	honoraires	Honoraires Update		fee_id*:string		Oui	application/json	FeeUpdate	200	422	honoraires_update_api_honoraires__fee_id__put
+DELETE	/api/honoraires/{fee_id}	Bearer	honoraires	Honoraires Delete		fee_id*:string		Non			200	422	honoraires_delete_api_honoraires__fee_id__delete
+GET	/api/doctor/fee-settings	Bearer	doctor	Fee Settings Get				Non			200		fee_settings_get_api_doctor_fee_settings_get
+PUT	/api/doctor/fee-settings	Bearer	doctor	Fee Settings Update				Oui	application/json	FeeTypePrices	200	422	fee_settings_update_api_doctor_fee_settings_put
+GET	/api/doctor/payment-settings	Bearer	doctor	Payment Settings Get				Non			200		payment_settings_get_api_doctor_payment_settings_get
+PUT	/api/doctor/payment-settings	Bearer	doctor	Payment Settings Update				Oui	application/json	PaymentSettings	200	422	payment_settings_update_api_doctor_payment_settings_put
+POST	/api/honoraires/{fee_id}/rendez-vous/{appointment_id}	Bearer	honoraires	Honoraires Link Appointment		fee_id*:string; appointment_id*:string		Non			200	422	honoraires_link_appointment_api_honoraires__fee_id__rendez_vous__appointment_id__post
+DELETE	/api/honoraires/{fee_id}/rendez-vous/{appointment_id}	Bearer	honoraires	Honoraires Unlink Appointment		fee_id*:string; appointment_id*:string		Non			200	422	honoraires_unlink_appointment_api_honoraires__fee_id__rendez_vous__appointment_id__delete
+POST	/api/honoraires/{fee_id}/visites/{visit_id}	Bearer	honoraires	Honoraires Link Visit		fee_id*:string; visit_id*:string		Non			200	422	honoraires_link_visit_api_honoraires__fee_id__visites__visit_id__post
+DELETE	/api/honoraires/{fee_id}/visites/{visit_id}	Bearer	honoraires	Honoraires Unlink Visit		fee_id*:string; visit_id*:string		Non			200	422	honoraires_unlink_visit_api_honoraires__fee_id__visites__visit_id__delete
+GET	/api/honoraires/{fee_id}/paiements	Bearer	honoraires	Honoraires Payments		fee_id*:string		Non			200	422	honoraires_payments_api_honoraires__fee_id__paiements_get
+POST	/api/honoraires/{fee_id}/paiements	Bearer	honoraires	Honoraires Add Payment		fee_id*:string		Oui	application/json	HonorairePaymentCreate	201	422	honoraires_add_payment_api_honoraires__fee_id__paiements_post
+GET	/api/honoraires/{fee_id}/resume	Bearer	honoraires	Honoraires Summary		fee_id*:string		Non			200	422	honoraires_summary_api_honoraires__fee_id__resume_get
+GET	/api/patients/{patient_id}/situation-financiere	Bearer	patients	Patient Financial Situation		patient_id*:string		Non			200	422	patient_financial_situation_api_patients__patient_id__situation_financiere_get
+GET	/api/payments	Bearer	payments	Payments List			patient_id:string | null; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string; status:string | null; method:string | null	Non			200	422	payments_list_api_payments_get
+POST	/api/payments	Bearer	payments	Payments Create				Oui	application/json	PaymentCreate	201	422	payments_create_api_payments_post
+POST	/api/payments/{payment_id}/cheque-documents	Bearer	payments	Payment Cheque Documents Upload		payment_id*:string		Oui	multipart/form-data	Body_payment_cheque_documents_upload_api_payments__payment_id__cheque_documents_post	200	422	payment_cheque_documents_upload_api_payments__payment_id__cheque_documents_post
+GET	/api/payments/{payment_id}/cheque-documents/{document_type}/preview	Bearer	payments	Payment Cheque Document Preview		payment_id*:string; document_type*:string		Non			200	422	payment_cheque_document_preview_api_payments__payment_id__cheque_documents__document_type__preview_get
+GET	/api/payments/{payment_id}	Bearer	payments	Payments Get		payment_id*:string		Non			200	422	payments_get_api_payments__payment_id__get
+PUT	/api/payments/{payment_id}	Bearer	payments	Payments Update		payment_id*:string		Oui	application/json	PaymentUpdate	200	422	payments_update_api_payments__payment_id__put
+DELETE	/api/payments/{payment_id}	Bearer	payments	Payments Delete		payment_id*:string		Non			200	422	payments_delete_api_payments__payment_id__delete
+GET	/api/finance/reports/monthly/{file_format}	Bearer	finance	Finance Monthly Report		file_format*:string	year*:integer; month*:integer	Non			200	422	finance_monthly_report_api_finance_reports_monthly__file_format__get
+GET	/api/expense-suppliers	Bearer	expense-suppliers	Expense Suppliers List				Non			200		expense_suppliers_list_api_expense_suppliers_get
+POST	/api/expense-suppliers	Bearer	expense-suppliers	Expense Suppliers Create				Oui	application/json	ExpenseSupplierCreate	201	422	expense_suppliers_create_api_expense_suppliers_post
+GET	/api/supplier-products	Bearer	supplier-products	Supplier Products List			supplier_id:string | null	Non			200	422	supplier_products_list_api_supplier_products_get
+POST	/api/supplier-products	Bearer	supplier-products	Supplier Products Create				Oui	application/json	SupplierProductCreate	201	422	supplier_products_create_api_supplier_products_post
+GET	/api/expenses	Bearer	expenses	Expenses List			date_from:string | null; date_to:string | null; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string	Non			200	422	expenses_list_api_expenses_get
+POST	/api/expenses	Bearer	expenses	Expenses Create				Oui	application/json	ExpenseCreate	201	422	expenses_create_api_expenses_post
+PUT	/api/expenses/{item_id}	Bearer	expenses	Expenses Update		item_id*:string		Oui	application/json	ExpenseCreate	200	422	expenses_update_api_expenses__item_id__put
+DELETE	/api/expenses/{item_id}	Bearer	expenses	Expenses Delete		item_id*:string		Non			200	422	expenses_delete_api_expenses__item_id__delete
+GET	/api/purchase-orders	Bearer	purchase-orders	Purchase Orders List			page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string; status:string | null	Non			200	422	purchase_orders_list_api_purchase_orders_get
+POST	/api/purchase-orders	Bearer	purchase-orders	Purchase Orders Create				Oui	application/json	PurchaseOrderCreate	201	422	purchase_orders_create_api_purchase_orders_post
+PUT	/api/purchase-orders/{item_id}	Bearer	purchase-orders	Purchase Orders Update		item_id*:string		Oui	application/json	PurchaseOrderCreate	200	422	purchase_orders_update_api_purchase_orders__item_id__put
+DELETE	/api/purchase-orders/{item_id}	Bearer	purchase-orders	Purchase Orders Delete		item_id*:string		Non			200	422	purchase_orders_delete_api_purchase_orders__item_id__delete
+GET	/api/paiements/{payment_id}/documents	Bearer	paiements	Payment Documents List		payment_id*:string		Non			200	422	payment_documents_list_api_paiements__payment_id__documents_get
+POST	/api/paiements/{payment_id}/documents	Bearer	paiements	Payment Documents Create		payment_id*:string		Oui	application/json	PaymentDocumentCreate	201	422	payment_documents_create_api_paiements__payment_id__documents_post
+GET	/api/documents-paiement/{document_id}/download	Bearer	documents-paiement	Payment Document Download		document_id*:string		Non			200	422	payment_document_download_api_documents_paiement__document_id__download_get
+GET	/api/documents-paiement/{document_id}/preview	Bearer	documents-paiement	Payment Document Preview		document_id*:string		Non			200	422	payment_document_preview_api_documents_paiement__document_id__preview_get
+GET	/api/cnss	Bearer	cnss	Cnss List			patient_id:string | null; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string; status:string | null; doctor_id:string | null; cabinet_name:string | null; date_from:string | null; date_to:string | null	Non			200	422	cnss_list_api_cnss_get
+POST	/api/cnss	Bearer	cnss	Cnss Create				Oui	application/json	CNSSCreate	201	422	cnss_create_api_cnss_post
+POST	/api/cnss/upload	Bearer	cnss	Cnss Upload				Oui	multipart/form-data	Body_cnss_upload_api_cnss_upload_post	201	422	cnss_upload_api_cnss_upload_post
+GET	/api/cnss/stats	Bearer	cnss	Cnss Stats				Non			200		cnss_stats_api_cnss_stats_get
+GET	/api/cnss/{cnss_id}/history	Bearer	cnss	Cnss History		cnss_id*:string		Non			200	422	cnss_history_api_cnss__cnss_id__history_get
+GET	/api/cnss/{cnss_id}/documents	Bearer	cnss	Cnss Documents		cnss_id*:string		Non			200	422	cnss_documents_api_cnss__cnss_id__documents_get
+POST	/api/cnss/{cnss_id}/documents	Bearer	cnss	Cnss Document Add		cnss_id*:string		Oui	multipart/form-data	Body_cnss_document_add_api_cnss__cnss_id__documents_post	201	422	cnss_document_add_api_cnss__cnss_id__documents_post
+PATCH	/api/cnss/{cnss_id}/status	Bearer	cnss	Cnss Status Update		cnss_id*:string		Oui	application/json	CNSSUpdate	200	422	cnss_status_update_api_cnss__cnss_id__status_patch
+GET	/api/cnss/{cnss_id}	Bearer	cnss	Cnss Get		cnss_id*:string		Non			200	422	cnss_get_api_cnss__cnss_id__get
+PUT	/api/cnss/{cnss_id}	Bearer	cnss	Cnss Update		cnss_id*:string		Oui	application/json	CNSSUpdate	200	422	cnss_update_api_cnss__cnss_id__put
+DELETE	/api/cnss/{cnss_id}	Bearer	cnss	Cnss Delete		cnss_id*:string		Non			200	422	cnss_delete_api_cnss__cnss_id__delete
+GET	/api/cnss/{cnss_id}/download	Bearer	cnss	Cnss Download		cnss_id*:string		Non			200	422	cnss_download_api_cnss__cnss_id__download_get
+GET	/api/medications/catalog/specialties	Bearer	medications	Medications Specialties				Non			200		medications_specialties_api_medications_catalog_specialties_get
+GET	/api/medications/catalog	Bearer	medications	Medications Catalog			q:string | null; specialty:string | null; limit:integer	Non			200	422	medications_catalog_api_medications_catalog_get
+GET	/api/prescriptions	Bearer	prescriptions	Prescriptions List			patient_id:string | null; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string	Non			200	422	prescriptions_list_api_prescriptions_get
+POST	/api/prescriptions	Bearer	prescriptions	Prescriptions Create				Oui	application/json	PrescriptionCreate	201	422	prescriptions_create_api_prescriptions_post
+GET	/api/prescriptions/{prescription_id}	Bearer	prescriptions	Prescriptions Get		prescription_id*:string		Non			200	422	prescriptions_get_api_prescriptions__prescription_id__get
+PUT	/api/prescriptions/{prescription_id}	Bearer	prescriptions	Prescriptions Update		prescription_id*:string		Oui	application/json	PrescriptionUpdate	200	422	prescriptions_update_api_prescriptions__prescription_id__put
+DELETE	/api/prescriptions/{prescription_id}	Bearer	prescriptions	Prescriptions Delete		prescription_id*:string		Non			200	422	prescriptions_delete_api_prescriptions__prescription_id__delete
+GET	/api/prescriptions/{prescription_id}/pdf	Bearer	prescriptions	Prescriptions Pdf		prescription_id*:string	action:string	Non			200	422	prescriptions_pdf_api_prescriptions__prescription_id__pdf_get
+DELETE	/api/cnss/{cnss_id}/documents/{document_id}	Bearer	cnss	Cnss Document Delete		cnss_id*:string; document_id*:string		Non			200	422	cnss_document_delete_api_cnss__cnss_id__documents__document_id__delete
+GET	/api/cnss/{cnss_id}/documents/{document_id}/preview	Bearer	cnss	Cnss Document Preview		cnss_id*:string; document_id*:string		Non			200	422	cnss_document_preview_api_cnss__cnss_id__documents__document_id__preview_get
+GET	/api/cnss/{cnss_id}/documents/{document_id}/download	Bearer	cnss	Cnss Document Download		cnss_id*:string; document_id*:string		Non			200	422	cnss_document_download_api_cnss__cnss_id__documents__document_id__download_get
+GET	/api/doctor/patients/{patient_id}/documents	Bearer	doctor	Patient Documents List		patient_id*:string	include_archived:boolean	Non			200	422	patient_documents_list_api_doctor_patients__patient_id__documents_get
+POST	/api/doctor/patients/{patient_id}/documents	Bearer	doctor	Patient Document Upload		patient_id*:string		Oui	multipart/form-data	Body_patient_document_upload_api_doctor_patients__patient_id__documents_post	201	422	patient_document_upload_api_doctor_patients__patient_id__documents_post
+POST	/api/doctor/patients/{patient_id}/documents/scan	Bearer	doctor	Patient Document Scan		patient_id*:string		Oui	multipart/form-data	Body_patient_document_scan_api_doctor_patients__patient_id__documents_scan_post	201	422	patient_document_scan_api_doctor_patients__patient_id__documents_scan_post
+GET	/api/documents	Bearer	documents	Documents List			patient_id:string | null; include_archived:boolean; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string; document_type:string | null	Non			200	422	documents_list_api_documents_get
+GET	/api/doctor/documents	Bearer	doctor	Documents List			patient_id:string | null; include_archived:boolean; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string; document_type:string | null	Non			200	422	documents_list_api_doctor_documents_get
+GET	/api/doctor/documents/categories	Bearer	doctor	Document Categories List			include_inactive:boolean	Non			200	422	document_categories_list_api_doctor_documents_categories_get
+POST	/api/doctor/documents/categories	Bearer	doctor	Document Categories Create				Oui	application/json	DocumentCategoryCreate	201	422	document_categories_create_api_doctor_documents_categories_post
+GET	/api/doctor/documents/{document_id}	Bearer	doctor	Documents Get		document_id*:string		Non			200	422	documents_get_api_doctor_documents__document_id__get
+PUT	/api/doctor/documents/{document_id}	Bearer	doctor	Documents Update		document_id*:string		Oui	application/json	DocumentUpdate	200	422	documents_update_api_doctor_documents__document_id__put
+DELETE	/api/doctor/documents/{document_id}	Bearer	doctor	Documents Delete		document_id*:string		Non			200	422	documents_delete_api_doctor_documents__document_id__delete
+POST	/api/doctor/documents/{document_id}/restore	Bearer	doctor	Documents Restore		document_id*:string		Non			200	422	documents_restore_api_doctor_documents__document_id__restore_post
+POST	/api/doctor/documents/{document_id}/versions	Bearer	doctor	Document New Version		document_id*:string		Oui	multipart/form-data	Body_document_new_version_api_doctor_documents__document_id__versions_post	201	422	document_new_version_api_doctor_documents__document_id__versions_post
+GET	/api/doctor/documents/{document_id}/history	Bearer	doctor	Document History		document_id*:string		Non			200	422	document_history_api_doctor_documents__document_id__history_get
+GET	/api/doctor/documents/{document_id}/download	Bearer	doctor	Documents Download		document_id*:string		Non			200	422	documents_download_api_doctor_documents__document_id__download_get
+GET	/api/doctor/documents/{document_id}/preview	Bearer	doctor	Documents Preview		document_id*:string		Non			200	422	documents_preview_api_doctor_documents__document_id__preview_get
+GET	/api/users/{staff_id}/permissions	Bearer	users	Staff Permissions Get		staff_id*:string		Non			200	422	staff_permissions_get_api_users__staff_id__permissions_get
+PUT	/api/users/{staff_id}/permissions	Bearer	users	Staff Permissions Update		staff_id*:string		Oui	application/json	PermissionMatrix	200	422	staff_permissions_update_api_users__staff_id__permissions_put
+GET	/api/whatsapp/configuration	Bearer	whatsapp	Configuration Get				Non			200		configuration_get_api_whatsapp_configuration_get
+POST	/api/whatsapp/configuration	Bearer	whatsapp	Configuration Save				Oui	application/json	CabinetWhatsAppWrite	201	422	configuration_save_api_whatsapp_configuration_post
+PUT	/api/whatsapp/configuration	Bearer	whatsapp	Configuration Save				Oui	application/json	CabinetWhatsAppWrite	200	422	configuration_save_api_whatsapp_configuration_put
+PATCH	/api/whatsapp/configuration	Bearer	whatsapp	Configuration Save				Oui	application/json	CabinetWhatsAppWrite	200	422	configuration_save_api_whatsapp_configuration_patch
+POST	/api/whatsapp/test-connection	Bearer	whatsapp	Connection Test				Non			200		connection_test_api_whatsapp_test_connection_post
+POST	/api/whatsapp/disable	Bearer	whatsapp	Configuration Disable				Non			200		configuration_disable_api_whatsapp_disable_post
+GET	/api/super-admin/whatsapp/configuration	Bearer	super-admin	Platform Configuration Get				Non			200		platform_configuration_get_api_super_admin_whatsapp_configuration_get
+POST	/api/super-admin/whatsapp/configuration	Bearer	super-admin	Platform Configuration Save				Oui	application/json	WhatsAppConfigurationWrite	201	422	platform_configuration_save_api_super_admin_whatsapp_configuration_post
+PUT	/api/super-admin/whatsapp/configuration	Bearer	super-admin	Platform Configuration Save				Oui	application/json	WhatsAppConfigurationWrite	200	422	platform_configuration_save_api_super_admin_whatsapp_configuration_put
+PATCH	/api/super-admin/whatsapp/configuration	Bearer	super-admin	Platform Configuration Save				Oui	application/json	WhatsAppConfigurationWrite	200	422	platform_configuration_save_api_super_admin_whatsapp_configuration_patch
+POST	/api/super-admin/whatsapp/webhook-setup	Bearer	super-admin	Platform Webhook Setup				Oui	application/json	WhatsAppWebhookSetupWrite	200	422	platform_webhook_setup_api_super_admin_whatsapp_webhook_setup_post
+POST	/api/super-admin/whatsapp/test-connection	Bearer	super-admin	Platform Connection Test				Non			200		platform_connection_test_api_super_admin_whatsapp_test_connection_post
+GET	/api/whatsapp/templates	Bearer	whatsapp	Templates List			page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string	Non			200	422	templates_list_api_whatsapp_templates_get
+POST	/api/whatsapp/templates	Bearer	whatsapp	Templates Create				Oui	application/json	WhatsAppTemplateWrite	201	422	templates_create_api_whatsapp_templates_post
+PATCH	/api/whatsapp/templates/{item_id}	Bearer	whatsapp	Templates Update		item_id*:string		Oui	application/json	WhatsAppTemplateWrite	200	422	templates_update_api_whatsapp_templates__item_id__patch
+DELETE	/api/whatsapp/templates/{item_id}	Bearer	whatsapp	Templates Delete		item_id*:string		Non			204	422	templates_delete_api_whatsapp_templates__item_id__delete
+POST	/api/whatsapp/templates/{item_id}/submit	Bearer	whatsapp	Templates Submit		item_id*:string		Non			200	422	templates_submit_api_whatsapp_templates__item_id__submit_post
+POST	/api/whatsapp/templates/{item_id}/sync	Bearer	whatsapp	Templates Sync		item_id*:string		Non			200	422	templates_sync_api_whatsapp_templates__item_id__sync_post
+GET	/api/whatsapp/messages	Bearer	whatsapp	Messages List			patient_id:string | null; message_status:string | null; message_type:string | null; page:integer | null; page_size:integer; search:string | null; sort_by:string; sort_order:string	Non			200	422	messages_list_api_whatsapp_messages_get
+GET	/api/patients/{patient_id}/whatsapp/messages	Bearer	patients	Patient Messages		patient_id*:string		Non			200	422	patient_messages_api_patients__patient_id__whatsapp_messages_get
+GET	/api/patients/{patient_id}/whatsapp-consent	Bearer	patients	Patient Whatsapp Consent		patient_id*:string		Non			200	422	patient_whatsapp_consent_api_patients__patient_id__whatsapp_consent_get
+POST	/api/patients/{patient_id}/whatsapp-consent/accept	Bearer	patients	Patient Whatsapp Consent Grant		patient_id*:string		Oui	application/json	WhatsAppConsentGrant	200	422	patient_whatsapp_consent_grant_api_patients__patient_id__whatsapp_consent_accept_post
+POST	/api/patients/{patient_id}/whatsapp-consent/grant	Bearer	patients	Patient Whatsapp Consent Grant		patient_id*:string		Oui	application/json	WhatsAppConsentGrant	200	422	patient_whatsapp_consent_grant_api_patients__patient_id__whatsapp_consent_grant_post
+POST	/api/patients/{patient_id}/whatsapp-consent/refuse	Bearer	patients	Patient Whatsapp Consent Refuse		patient_id*:string		Oui	application/json	WhatsAppConsentDecision	200	422	patient_whatsapp_consent_refuse_api_patients__patient_id__whatsapp_consent_refuse_post
+POST	/api/patients/{patient_id}/whatsapp-consent/withdraw	Bearer	patients	Patient Whatsapp Consent Withdraw		patient_id*:string		Oui	application/json	WhatsAppConsentWithdraw	200	422	patient_whatsapp_consent_withdraw_api_patients__patient_id__whatsapp_consent_withdraw_post
+PATCH	/api/patients/{patient_id}/whatsapp-consent/preferences	Bearer	patients	Patient Whatsapp Consent Preferences		patient_id*:string		Oui	application/json	WhatsAppConsentPreferences	200	422	patient_whatsapp_consent_preferences_api_patients__patient_id__whatsapp_consent_preferences_patch
+GET	/api/patients/{patient_id}/whatsapp-consent/history	Bearer	patients	Patient Whatsapp Consent History		patient_id*:string		Non			200	422	patient_whatsapp_consent_history_api_patients__patient_id__whatsapp_consent_history_get
+GET	/api/whatsapp/consents	Bearer	whatsapp	Whatsapp Consents			status_filter:string | null	Non			200	422	whatsapp_consents_api_whatsapp_consents_get
+GET	/api/patient/me/whatsapp-consent	Bearer	patient	My Whatsapp Consent				Non			200		my_whatsapp_consent_api_patient_me_whatsapp_consent_get
+POST	/api/patient/me/whatsapp-consent/accept	Bearer	patient	My Whatsapp Consent Accept				Oui	application/json	WhatsAppPatientConsentAccept	200	422	my_whatsapp_consent_accept_api_patient_me_whatsapp_consent_accept_post
+POST	/api/patient/me/whatsapp-consent/refuse	Bearer	patient	My Whatsapp Consent Refuse				Oui	application/json	WhatsAppConsentWithdraw	200	422	my_whatsapp_consent_refuse_api_patient_me_whatsapp_consent_refuse_post
+POST	/api/patient/me/whatsapp-consent/withdraw	Bearer	patient	My Whatsapp Consent Withdraw				Oui	application/json	WhatsAppConsentWithdraw	200	422	my_whatsapp_consent_withdraw_api_patient_me_whatsapp_consent_withdraw_post
+PATCH	/api/patient/me/whatsapp-consent/preferences	Bearer	patient	My Whatsapp Consent Preferences				Oui	application/json	WhatsAppConsentPreferences	200	422	my_whatsapp_consent_preferences_api_patient_me_whatsapp_consent_preferences_patch
+GET	/api/patient/me/whatsapp-consent/history	Bearer	patient	My Whatsapp Consent History				Non			200		my_whatsapp_consent_history_api_patient_me_whatsapp_consent_history_get
+POST	/api/rendez-vous/{item_id}/send-whatsapp-reminder	Bearer	rendez-vous	Appointment Reminder		item_id*:string		Oui	application/json	WhatsAppSendRequest	201	422	appointment_reminder_api_rendez_vous__item_id__send_whatsapp_reminder_post
+POST	/api/honoraires/{item_id}/send-payment-reminder	Bearer	honoraires	Fee Reminder		item_id*:string		Oui	application/json	WhatsAppSendRequest	201	422	fee_reminder_api_honoraires__item_id__send_payment_reminder_post
+POST	/api/patients/{patient_id}/send-whatsapp-payment-reminder	Bearer	patients	Patient Payment Reminder		patient_id*:string		Oui	application/json	WhatsAppSendRequest	201	422	patient_payment_reminder_api_patients__patient_id__send_whatsapp_payment_reminder_post
+POST	/api/whatsapp/messages/{item_id}/retry	Bearer	whatsapp	Retry Message		item_id*:string		Non			200	422	retry_message_api_whatsapp_messages__item_id__retry_post
+GET	/api/whatsapp/conversations	Bearer	whatsapp	Conversations List			filter:string; search:string; page:integer | null; page_size:integer; sort_order:string	Non			200	422	conversations_list_api_whatsapp_conversations_get
+POST	/api/whatsapp/conversations/patient/{patient_id}	Bearer	whatsapp	Conversation Create		patient_id*:string		Non			201	422	conversation_create_api_whatsapp_conversations_patient__patient_id__post
+GET	/api/whatsapp/conversations/{conversation_id}/messages	Bearer	whatsapp	Conversation Messages		conversation_id*:string		Non			200	422	conversation_messages_api_whatsapp_conversations__conversation_id__messages_get
+POST	/api/whatsapp/conversations/{conversation_id}/messages	Bearer	whatsapp	Conversation Send		conversation_id*:string		Oui	application/json	WhatsAppConversationSend	201	422	conversation_send_api_whatsapp_conversations__conversation_id__messages_post
+PUT	/api/whatsapp/conversations/{conversation_id}	Bearer	whatsapp	Conversation Update		conversation_id*:string		Oui	application/json	WhatsAppConversationUpdate	200	422	conversation_update_api_whatsapp_conversations__conversation_id__put
+PATCH	/api/whatsapp/conversations/{conversation_id}	Bearer	whatsapp	Conversation Update		conversation_id*:string		Oui	application/json	WhatsAppConversationUpdate	200	422	conversation_update_api_whatsapp_conversations__conversation_id__patch
+GET	/api/whatsapp/unknown-numbers	Bearer	whatsapp	Unknown Numbers				Non			200		unknown_numbers_api_whatsapp_unknown_numbers_get
+POST	/api/whatsapp/unknown-numbers/{item_id}/link/{patient_id}	Bearer	whatsapp	Unknown Link		item_id*:string; patient_id*:string		Non			200	422	unknown_link_api_whatsapp_unknown_numbers__item_id__link__patient_id__post
+GET	/api/webhooks/whatsapp	Public	webhooks	Webhook Verify			hub.mode:string | null; hub.verify_token:string | null; hub.challenge:string | null	Non			200	422	webhook_verify_api_webhooks_whatsapp_get
+POST	/api/webhooks/whatsapp	Public	webhooks	Webhook Receive				Non			200		webhook_receive_api_webhooks_whatsapp_post
+GET	/	Public		Root				Non			200		root__get

@@ -1,0 +1,33 @@
+ALL_SUBSCRIPTION_MODULES = [
+    "dashboard",
+    "appointments",
+    "patients",
+    "visits",
+    "fees",
+    "payments",
+    "reminders",
+    "whatsapp",
+    "cnss",
+    "prescriptions",
+    "documents",
+    "staff",
+    "audit",
+    "statistics",
+]
+
+SUBSCRIPTION_MODULE_LABELS = {
+    "dashboard": "Tableau de bord",
+    "appointments": "Rendez-vous et agenda",
+    "patients": "Dossiers patients",
+    "visits": "Visites",
+    "fees": "Honoraires",
+    "payments": "Paiements et RAP",
+    "reminders": "Relances d’impayés",
+    "whatsapp": "WhatsApp",
+    "cnss": "CNSS/CNOPS",
+    "prescriptions": "Ordonnances",
+    "documents": "Documents",
+    "staff": "Utilisateurs et permissions",
+    "audit": "Sécurité et traçabilité",
+    "statistics": "Statistiques",
+}
