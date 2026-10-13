@@ -390,6 +390,8 @@ The project is evolving incrementally, with the infrastructure and core platform
 
 <div align="center">
 
+<img src="assets/profile.jpg" width="180" alt="Adam Moujtahid" />
+
 ### Adam Moujtahid
 
 **Computer Engineering & Networks Student**  
